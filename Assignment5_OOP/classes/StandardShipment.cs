@@ -17,10 +17,10 @@ namespace Assignment5_OOP.classes
             return EstimatedCost * 0.05m;
         }
 
-        public string GetTrackingStatus()
-        {
-            return $"Shipment {TrackingCode} is Ready.";
-        }
+        //public string GetTrackingStatus()
+        //{
+        //    return $"Shipment {TrackingCode} is Ready.";
+        //}
 
         public void Track()
         {

@@ -71,10 +71,10 @@ namespace Assignment5_OOP.classes
         }
 
      
-        public string GetTrackingStatus()
-        {
-            return $"Shipment {TrackingCode} has been Delivered.";
-        }
+        //public string GetTrackingStatus()
+        //{
+        //    return $"Shipment {TrackingCode} has been Delivered.";
+        //}
 
         public void Track()
         {
