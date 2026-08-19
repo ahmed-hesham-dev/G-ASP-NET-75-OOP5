@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Assignment5_OOP.classes
 {
-    public abstract class Shipment
+    public abstract partial class Shipment
     {
         private string description;
         private double weight;
@@ -189,7 +189,16 @@ namespace Assignment5_OOP.classes
             }
         }
 
+        #region Partial Method Implementation
 
+        partial void OnTrackingStatusChanged(string newStatus)
+        {
+            Console.WriteLine(
+                $"Tracking status changed to: {newStatus}"
+            );
+        }
+
+        #endregion
         public abstract void PrintShipment();
     }
 }
