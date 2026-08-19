@@ -57,11 +57,31 @@ namespace Assignment5_OOP.classes
         #endregion
 
 
+        #region Static Members
+
+        public static int TotalShipmentsCreated;
+
+        static Shipment()
+        {
+            TotalShipmentsCreated = 0;
+            Console.WriteLine("Shipment System Initialized");
+        }
+
+        public static int GetTotalShipmentsCreated()
+        {
+            return TotalShipmentsCreated;
+        }
+
+        #endregion
+
+
         #region Constructor 1&2
 
         // Constructor 1
         public Shipment(string trackingCode)
         {
+            TotalShipmentsCreated++;
+
             TrackingCode = !string.IsNullOrWhiteSpace(trackingCode)
                 ? trackingCode
                 : "Unknown";
@@ -77,6 +97,7 @@ namespace Assignment5_OOP.classes
             );
         }
 
+
         // Constructor 2
         public Shipment(
             string trackingCode,
@@ -85,6 +106,8 @@ namespace Assignment5_OOP.classes
             decimal deliveryFee,
             DeliveryAddress destination)
         {
+            TotalShipmentsCreated++;
+
             TrackingCode = !string.IsNullOrWhiteSpace(trackingCode)
                 ? trackingCode
                 : "Unknown";
@@ -130,22 +153,18 @@ namespace Assignment5_OOP.classes
 
         #region Object Copying
 
-      
         public Shipment CopyShipment()
         {
             return (Shipment)this.MemberwiseClone();
         }
 
 
-        
-       
         public Shipment ShallowCopy()
         {
             return (Shipment)this.MemberwiseClone();
         }
 
 
-        
         public Shipment DeepCopy()
         {
             Shipment copy = (Shipment)this.MemberwiseClone();
