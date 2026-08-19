@@ -10,7 +10,8 @@ namespace Assignment5_OOP.classes
         private double weight;
         private decimal deliveryFee;
 
-        #region property 
+        #region property
+
         public DeliveryAddress Destination { get; set; }
 
         public string TrackingCode { get; init; }
@@ -54,26 +55,35 @@ namespace Assignment5_OOP.classes
         public abstract decimal EstimatedCost { get; }
 
         #endregion
+
+
         #region Constructor 1&2
+
         // Constructor 1
         public Shipment(string trackingCode)
         {
             TrackingCode = !string.IsNullOrWhiteSpace(trackingCode)
-                ? trackingCode : "Unknown";
+                ? trackingCode
+                : "Unknown";
 
             description = "Unknown";
             weight = 1;
             deliveryFee = 50;
 
-            Destination = new DeliveryAddress("Unknown", "Unknown", 0);
+            Destination = new DeliveryAddress(
+                "Unknown",
+                "Unknown",
+                0
+            );
         }
 
         // Constructor 2
-        public Shipment(string trackingCode,
-                        string description,
-                        double weight,
-                        decimal deliveryFee,
-                        DeliveryAddress destination)
+        public Shipment(
+            string trackingCode,
+            string description,
+            double weight,
+            decimal deliveryFee,
+            DeliveryAddress destination)
         {
             TrackingCode = !string.IsNullOrWhiteSpace(trackingCode)
                 ? trackingCode
@@ -85,45 +95,82 @@ namespace Assignment5_OOP.classes
 
             Destination = destination;
 
-           
             Description = description;
             Weight = weight;
             DeliveryFee = deliveryFee;
         }
+
         #endregion
-        
-        public void UpdateDeliveryFee(decimal newFee)
-        {
-            if (newFee > 0)
-            {
 
-                DeliveryFee = newFee;
-            }
-        }
 
-        
+        #region Practical
 
-        #region Practical 
         public double UpdateWeight(double newWeight)
         {
             if (newWeight > 0)
             {
                 Weight = newWeight;
             }
+
             return Weight;
         }
+
         public double UpdateWeight(double newWeight, double extraPakeg)
         {
             if (newWeight > 0)
             {
                 Weight = newWeight + extraPakeg;
             }
+
             return Weight;
         }
+
         #endregion
+
+
+        #region Object Copying
+
       
+        public Shipment CopyShipment()
+        {
+            return (Shipment)this.MemberwiseClone();
+        }
+
+
+        
+       
+        public Shipment ShallowCopy()
+        {
+            return (Shipment)this.MemberwiseClone();
+        }
+
+
+        
+        public Shipment DeepCopy()
+        {
+            Shipment copy = (Shipment)this.MemberwiseClone();
+
+            copy.Destination = new DeliveryAddress(
+                this.Destination.City,
+                this.Destination.Street,
+                this.Destination.BuildingNumber
+            );
+
+            return copy;
+        }
+
+        #endregion
+
+
+        public void UpdateDeliveryFee(decimal newFee)
+        {
+            if (newFee > 0)
+            {
+                DeliveryFee = newFee;
+            }
+        }
+
 
         public abstract void PrintShipment();
-
     }
 }
